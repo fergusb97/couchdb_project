@@ -1,0 +1,61 @@
+<link href="read.css" rel="stylesheet" type="text/css">
+
+
+<h2>Add Director</h2>
+<div>
+    <form method="post" action="/director/add">
+        <input type="text" id="name" name="name" placeholder="Add Director">
+        <p></p>
+        <input class="textbox" type="text" id="title1" name="title1" placeholder="Add Title">
+        <input class="textbox" type="text" id="year1" name="year1" placeholder="Add Year">
+        <p></p>
+        <input class="textbox" type="text" id="title2" name="title2" placeholder="Add Title">
+        <input class="textbox" type="text" id="year2" name="year2" placeholder="Add Year">
+        <p></p>
+        <input class="textbox" type="text" id="title3" name="title3" placeholder="Add Title">
+        <input class="textbox" type="text" id="year3" name="year3" placeholder="Add Year">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div id="container" class="div1">
+<h2>Directors</h2>
+
+    <ul>
+        <% directors.forEach(function(director){ %>
+            <h3>
+                <%= director.value.name %>
+            </h3>
+            <ul class="columns">
+                <li>
+                    <h4>
+                        <%= director.value.movies[0].title %>
+                    </h4>
+                    <p> Released in: <%= director.value.movies[0].year %>
+                    </p>
+                </li>
+
+                <li>
+                    <h4>
+                        <%= director.value.movies[1].title %>
+                    </h4>
+                    <p>Released in: <%= director.value.movies[1].year %>
+                    </p>
+                </li>
+
+                <li>
+                    <h4>
+                        <%= director.value.movies[2].title %>
+                    </h4>
+                    <p>Released in: <%= director.value.movies[2].year %>
+                    </p>
+                </li>
+                <form method = "post" action ="/director/delete/<%= director.key %>">
+                    <input type="hidden" value ="<%= director.value.rev %>" name="rev">
+                    <input type="submit" value ="Delete Director">
+                </form>
+            </ul>
+            <% }); %>
+    </ul>
+</div>

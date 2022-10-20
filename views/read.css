@@ -1,0 +1,15 @@
+input {
+    display: flex;
+    box-sizing: border-box;
+    float:center;
+
+}
+
+.textbox { 
+    display:flex;
+} 
+
+.div1{
+    display: flexbox;
+    float: left;
+}
