@@ -30,7 +30,10 @@
             <ul class="columns">
                 <li>
                     <h4>
-                        <%= director.value.movies[0].title %>
+                        <form method="post" action="/director/updateDirector/<%= director.id %>" >
+                        <input class="textbox" type="text" id="update_title" name="update_title" value = "<%= director.value.movies[0].title %>">
+                        <input type="submit" value="Update Title">
+                        </form>
                     </h4>
                     <p> Released in: <%= director.value.movies[0].year %>
                     </p>

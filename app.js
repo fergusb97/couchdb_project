@@ -67,7 +67,26 @@ app.post('/director/add', function(req, res){
     });
 });
 
-app.post('/director/delete/:id', function(req,res){
+app.post('/updateDirector/:id', function(req, res){
+    const id = req.params.id;
+    const rev = req.body.rev;
+
+    const movies = [{"title": req.body.update_title}];
+
+    couch.update(dbName, {
+        _id: id,
+        _rev: rev,
+        movies: movies
+    }).then(
+         function(data, headers, status){
+            req.redirect('/');
+    },
+    function(err){
+        res.send(err);
+    });
+});
+
+app.post('/director/delete/:id', function(req, res){
     const id = req.params.id;
     const rev = req.body.rev;
 
