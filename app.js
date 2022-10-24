@@ -66,7 +66,7 @@ app.post('/director/add', function(req, res){
     });
 });
 
-
+/*
 app.post('/update/:id', function (req, res) {
     const id = req.params.id;
 
@@ -80,6 +80,7 @@ app.post('/update/:id', function (req, res) {
             res.send(err);
         });
 });
+*/
 
 
 app.post('/director/updateDirector/:id', function(req, res){
