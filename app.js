@@ -4,7 +4,6 @@ const path = require('path');
 const NodeCouchDb = require('node-couchdb');
 
 
-
 const couch = new NodeCouchDb({  
     auth:{  
         user: 'admin', 
@@ -67,16 +66,38 @@ app.post('/director/add', function(req, res){
     });
 });
 
-app.post('/updateDirector/:id', function(req, res){
+
+app.post('/update/:id', function (req, res) {
+    const id = req.params.id;
+
+        couch.get(dbName, id).then(
+            function (data, headers, status) { 
+            res.render('updateDirector', {
+                directors: data.data
+            });
+        },
+         function (err) {
+            res.send(err);
+        });
+});
+
+
+app.post('/director/updateDirector/:id', function(req, res){
     const id = req.params.id;
     const rev = req.body.rev;
 
-    const movies = [{"title": req.body.update_title}];
+    const name = req.body.name;
+
+    const movies = [{"title": req.body.update_title0, "year": req.body.update_year0},
+                    {"title": req.body.update_title1, "year": req.body.update_year1},
+                    {"title": req.body.update_title2, "year": req.body.update_year2}];
+    
 
     couch.update(dbName, {
         _id: id,
         _rev: rev,
-        movies: movies
+        name: name,
+        movies: movies       
     }).then(
          function(data, headers, status){
             req.redirect('/');
