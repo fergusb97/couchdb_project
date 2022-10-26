@@ -11,14 +11,14 @@ const couch = new NodeCouchDb({
 }  
 });  
 
+
 const dbName = 'directors';
 const viewUrl = '/_design/directors/_view/all_directors';
+const mapReduce = '_design/countDirectors/_view/countDirs';
 
-couch.listDatabases().then(function(dbs){  
-    console.log(dbs);  
-});
+let countDirs;
 
-const app = express();  
+const app = express(); 
 
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, 'views'));  
@@ -28,12 +28,34 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static(__dirname + '/views'));  
 
-app.get('/', function(req, res){  
- couch.get(dbName, viewUrl).then(
+
+
+const getCountDirectors = async () => {
+
+    couch.get(dbName, mapReduce).then(
+        function(data, headers, status){
+            countDirs = data.data.rows;
+        },
+        function(err){
+            res.send(err);
+        }
+    )
+}
+
+couch.listDatabases().then(function(dbs){  
+    console.log(dbs);  
+});
+
+
+app.get('/', function(req, res){ 
+    getCountDirectors(); 
+
+    couch.get(dbName, viewUrl).then(
         function(data, headers, status){
         console.log(data.data.rows);
         res.render('index',{
-            directors:data.data.rows
+            directors:data.data.rows,
+            countDirs
         });
     },
     function(err){
@@ -66,24 +88,8 @@ app.post('/director/add', function(req, res){
     });
 });
 
-/*
-app.post('/update/:id', function (req, res) {
-    const id = req.params.id;
 
-        couch.get(dbName, id).then(
-            function (data, headers, status) { 
-            res.render('updateDirector', {
-                directors: data.data
-            });
-        },
-         function (err) {
-            res.send(err);
-        });
-});
-*/
-
-
-app.post('/director/updateDirector/:id', function(req, res){
+app.post('director/updateDirector/:rev', function(req, res){
     const id = req.params.id;
     const rev = req.body.rev;
 

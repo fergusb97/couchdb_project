@@ -20,10 +20,15 @@
 </div>
 
 <div id="container" class="div1">
+
+    <h3>Number of Directors:</h3>
+    <h3><%= countDirs[0].value %></h3>
+
     <h2>Directors</h2>
 
     <ul>
         <% directors.forEach(function(director){ %>
+
 
             <h3>
                 <%= director.value.name %>
@@ -31,8 +36,8 @@
 
             <ul class="columns">
 
-                <form>
-                    <form method="post" action="/director/updateDirector/<%= director.key %>">
+                
+                    <form method="post" action="director/updateDirector/<%= director.key %>">
 
                         <li>
                             <input type="hidden" value="<%= director.value.name %>" name="name">
@@ -74,12 +79,12 @@
                                     value="<%= director.value.movies[2].year %>">
                             </p>
 
-                            <input type="submit" value="Update Director">
-                            <p></p>
+                           <p></p>
                         </li>
-
+                        
+                        <input type="submit" value="Update Director">
                     </form>
-                </form>
+                
 
 
                 <form method="post" action="/director/delete/<%= director.key %>">
