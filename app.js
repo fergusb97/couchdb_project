@@ -66,7 +66,7 @@ app.get('/', function(req, res){
 
 app.post('/director/add', function(req, res){
     const name = req.body.name;
-    const movie =  [{ "title": req.body.title1, "year": req.body.year1 },
+    const movies =  [{ "title": req.body.title1, "year": req.body.year1 },
                     { "title": req.body.title2, "year": req.body.year2 },
                     { "title": req.body.title3, "year": req.body.year3 }
                     ];
@@ -77,7 +77,7 @@ app.post('/director/add', function(req, res){
         couch.insert(dbName, {
             _id: id,
             name: name,
-            movies: movie
+            movies: movies
         }).then(
             function(data, headers, status){
                 res.redirect('/');
