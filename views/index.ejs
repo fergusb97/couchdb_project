@@ -25,19 +25,17 @@
     <h3><%= countDirs[0].value %></h3>
 
     <h2>Directors</h2>
-
+    
     <ul>
         <% directors.forEach(function(director){ %>
-
 
             <h3>
                 <%= director.value.name %>
             </h3>
 
             <ul class="columns">
-
-                
-                    <form method="post" action="director/updateDirector/<%= director.key %>">
+          
+                    <form method="post" action="director/<%= director.id %>">
 
                         <li>
                             <input type="hidden" value="<%= director.value.name %>" name="name">
@@ -93,6 +91,7 @@
                 </form>
 
             </ul>
-            <% }); %>
+        
+        <% }); %>
     </ul>
 </div>

@@ -89,7 +89,7 @@ app.post('/director/add', function(req, res){
 });
 
 
-app.post('director/updateDirector/:rev', function(req, res){
+app.post('director/updateDirector/:id', function(req, res){
     const id = req.params.id;
     const rev = req.body.rev;
 
