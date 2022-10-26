@@ -19,7 +19,7 @@
     </form>
 </div>
 
-<div id="container" class="div1">
+<div class="container">
 
     <h3>Number of Directors:</h3>
     <h3><%= countDirs[0].value %></h3>
@@ -33,45 +33,44 @@
                 <%= director.value.name %>
             </h3>
 
-            <ul class="columns">
+            <ul id = "menu">
           
-                    <form method="post" action="director/<%= director.id %>">
+                <form method="post" action="director/updateDirector/<%= director.id %>">
 
-                        <li>
-                            <input type="hidden" value="<%= director.value.name %>" name="name">
+                  
+                        <li class="sub">
 
-                            <input type="hidden" value="<%= director.value.rev %>" name="rev">
-
-                            <input class="textbox" type="text" id="update_title0" name="update_title0"
+                            <p>Title:<input class="textbox" type="text" id="update_title0" name="update_title0"
                                 value="<%= director.value.movies[0].title %>">
-
+                            </p>
 
                             <p> Released in: <input class="textbox" type="text" id="update_year0" name="update_year0"
                                     value="<%= director.value.movies[0].year %>">
                             </p>
+
                         </li>
+                   
 
-                        <li>
-                            <input type="hidden" value="<%= director.value.name %>" name="name">
+        
+                        <li class="sub">
 
-                            <input type="hidden" value="<%= director.value.rev %>" name="rev">
-
-                            <input class="textbox" type="text" id="update_title1" name="update_title1"
+                            <p>Title:<input class="textbox" type="text" id="update_title0" name="update_title0"
                                 value="<%= director.value.movies[1].title %>">
-
+                            </p>
 
                             <p> Released in: <input class="textbox" type="text" id="update_year1" name="update_year1"
                                     value="<%= director.value.movies[1].year %>">
                             </p>
+
                         </li>
+                    
 
-                        <li>
-                            <input type="hidden" value="<%= director.value.name %>" name="name">
+                    
+                        <li class="sub">
 
-                            <input type="hidden" value="<%= director.value.rev %>" name="rev">
-
-                            <input class="textbox" type="text" id="update_title2" name="update_title2"
+                            <p>Title:<input class="textbox" type="text" id="update_title0" name="update_title0"
                                 value="<%= director.value.movies[2].title %>">
+                            </p>
 
                             <p> Released in: <input class="textbox" type="text" id="update_year2" name="update_year2"
                                     value="<%= director.value.movies[2].year %>">
@@ -79,9 +78,13 @@
 
                            <p></p>
                         </li>
-                        
-                        <input type="submit" value="Update Director">
-                    </form>
+                    
+
+                    <input type="hidden" value="<%= director.value.name %>" name="name">
+                    <input type="hidden" value="<%= director.value.rev %>" name="rev">
+                    <input type="submit" value="Update Director">
+                    
+                </form>
                 
 
 
