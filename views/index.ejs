@@ -1,31 +1,11 @@
 <!DOCTYPE html>
 <link href="read.css" rel="stylesheet" type="text/css">
 
-
-<h2>Add Director</h2>
-<div>
-    <form method="post" action="/director/add">
-        <input type="text" id="name" name="name" placeholder="Add Director">
-        <p></p>
-        <input class="textbox" type="text" id="title1" name="title1" placeholder="Add Title">
-        <input class="textbox" type="text" id="year1" name="year1" placeholder="Add Year">
-        <p></p>
-        <input class="textbox" type="text" id="title2" name="title2" placeholder="Add Title">
-        <input class="textbox" type="text" id="year2" name="year2" placeholder="Add Year">
-        <p></p>
-        <input class="textbox" type="text" id="title3" name="title3" placeholder="Add Title">
-        <input class="textbox" type="text" id="year3" name="year3" placeholder="Add Year">
-
-        <input type="submit" value="Submit">
-    </form>
-</div>
-
 <div class="container">
-
-    <h3>Number of Directors:</h3>
+    <h2>Number of Directors:</h2>
     <h3><%= countDirs[0].value %></h3>
 
-    <h2>Directors</h2>
+    <h1>Directors</h1>
     
     <ul>
         <% directors.forEach(function(director){ %>
@@ -99,4 +79,24 @@
         <% }); %>
     </ul>
 </div>
+
+
+<h2 style="margin-left: 600px;">Add Director</h2>
+<div>
+    <form method="post" action="/director/add" style="margin-left: 600px;">
+        <input type="text" id="name" name="name" placeholder="Add Director" >
+        <p></p>
+        <input class="textbox" type="text" id="title1" name="title1" placeholder="Add Title">
+        <input class="textbox" type="text" id="year1" name="year1" placeholder="Add Year">
+        <p></p>
+        <input class="textbox" type="text" id="title2" name="title2" placeholder="Add Title">
+        <input class="textbox" type="text" id="year2" name="year2" placeholder="Add Year">
+        <p></p>
+        <input class="textbox" type="text" id="title3" name="title3" placeholder="Add Title">
+        <input class="textbox" type="text" id="year3" name="year3" placeholder="Add Year">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
 </html>
